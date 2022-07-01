@@ -35,4 +35,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const result = await Customer.updateOne({ _id: req.params.id }, req.body);
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const result = await Customer.deleteOne({ _id: req.params.id });
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
 module.exports = router;
