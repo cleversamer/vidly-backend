@@ -2,6 +2,7 @@ const { Movie } = require("../models/movie");
 const { Genre } = require("../models/genre");
 const { Router } = require("express");
 const router = Router();
+const _ = require("lodash");
 
 router.get("/", async (req, res) => {
   try {
@@ -30,13 +31,8 @@ router.post("/", async (req, res) => {
 
     const result = await Movie.insertMany([
       {
-        title: req.body.title,
-        genre: {
-          _id: genre._id,
-          name: genre.name,
-        },
-        numberInStock: req.body.numberInStock,
-        dailyRentalRate: req.body.dailyRentalRate,
+        ..._.pick(req.body, ["title", "numberInStock", "dailyRentalRate"]),
+        genre: _.pick(genre, ["_id", "name"]),
       },
     ]);
     res.status(200).json(result);
@@ -47,7 +43,10 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const result = await Movie.updateOne({ _id: req.params.id }, req.body);
+    const result = await Movie.updateOne(
+      { _id: req.params.id },
+      _.pick(req.body, ["title", "genre", "numberInStock", "dailyRentalRate"])
+    );
     res.status(200).json(result);
   } catch (err) {
     res.status(500).send(err.message);
@@ -56,7 +55,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const result = await Movie.deleteOne({ _id: req.params.id }, req.body);
+    const result = await Movie.deleteOne({ _id: req.params.id });
     res.status(200).json(result);
   } catch (err) {
     res.status(500).send(err.message);

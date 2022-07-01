@@ -41,20 +41,9 @@ router.post("/", async (req, res) => {
 
     const result = await Rental.insertMany([
       {
-        customer: {
-          _id: customer._id,
-          name: customer.name,
-          isGold: customer.isGold,
-          phone: customer.phone,
-        },
-        movie: {
-          _id: movie._id,
-          title: movie.title,
-          dailyRentalRate: movie.dailyRentalRate,
-        },
-        dateOut: req.body.dateOut,
-        dateReturned: req.body.dateReturned,
-        rentalFee: req.body.rentalFee,
+        customer: _.pick(customer, ["_id", "name", "isGold", "phone"]),
+        movie: _.pick(movie, ["_id", "title", "dailyRentalRate"]),
+        ..._.pick(req.body, ["dateOut", "dateReturned", "rentalFee"]),
       },
     ]);
 
