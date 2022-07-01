@@ -1,4 +1,4 @@
-const Genre = require("../models/genre");
+const { Genre } = require("../models/genre");
 const { Router } = require("express");
 const router = Router();
 
