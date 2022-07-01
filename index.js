@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-const genres = require("./routes/genres");
+const setup = require("./setup");
 
-app.use(express.json());
-app.use("/api/genres", genres);
+setup(app);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
