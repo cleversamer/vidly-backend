@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const schema = {
+const schema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -13,7 +13,7 @@ const schema = {
     type: Boolean,
     default: false,
   },
-};
+});
 
 const Customer = mongoose.model("Customer", schema);
 
