@@ -3,6 +3,17 @@ const { Router } = require("express");
 const router = Router();
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
+const auth = require("../middleware/auth");
+
+router.get("/me", [auth], async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findOne({ _id: userId });
+    res.status(200).json(_.pick(user, ["_id", "name", "email"]));
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
 
 router.post("/", async (req, res) => {
   try {
