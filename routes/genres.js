@@ -4,12 +4,12 @@ const router = Router();
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const data = await Genre.find({});
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).send("Something went wrong on the server.");
+    next(err);
   }
 });
 
