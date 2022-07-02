@@ -7,9 +7,8 @@ const auth = require("../middleware/auth");
 
 router.get("/me", [auth], async (req, res) => {
   try {
-    const userId = req.user._id;
-    const user = await User.findOne({ _id: userId });
-    res.status(200).json(_.pick(user, ["_id", "name", "email"]));
+    const user = await User.findOne({ _id: req.user._id });
+    res.status(200).json(_.pick(user, ["_id", "name", "email", "isAdmin"]));
   } catch (err) {
     res.status(500).send(err.message);
   }
