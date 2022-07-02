@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const result = await Rental.find({});
     res.status(200).json(result);
   } catch (err) {
-    re.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
 
     res.status(200).json(result);
   } catch (err) {
-    re.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
 
     res.status(200).json(result);
   } catch (err) {
-    re.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 

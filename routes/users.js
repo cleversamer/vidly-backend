@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     const token = user.generateAuthToken();
     res.status(200).header("x-auth-token", token).send(user);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 

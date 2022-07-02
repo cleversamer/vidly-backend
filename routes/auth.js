@@ -10,7 +10,7 @@ router.get("/me", [auth], async (req, res) => {
     const user = await User.findOne({ _id: req.user._id });
     res.status(200).json(_.pick(user, ["_id", "name", "email", "isAdmin"]));
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 
@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     const token = user.generateAuthToken();
     res.status(200).send(token);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send("Something went wrong on the server.");
   }
 });
 
