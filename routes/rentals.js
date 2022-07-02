@@ -3,18 +3,19 @@ const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
 const { Router } = require("express");
 const router = Router();
+const asyncMiddleware = require("../middleware/async");
 
-router.get("/", async (req, res) => {
-  try {
+router.get(
+  "/",
+  asyncMiddleware(async (req, res) => {
     const result = await Rental.find({});
     res.status(200).json(result);
-  } catch (err) {
-    res.status(500).send("Something went wrong on the server.");
-  }
-});
+  })
+);
 
-router.get("/:id", async (req, res) => {
-  try {
+router.get(
+  "/:id",
+  asyncMiddleware(async (req, res) => {
     const result = await Rental.findById(req.params.id);
 
     if (!result) {
@@ -22,13 +23,12 @@ router.get("/:id", async (req, res) => {
     }
 
     res.status(200).json(result);
-  } catch (err) {
-    res.status(500).send("Something went wrong on the server.");
-  }
-});
+  })
+);
 
-router.post("/", async (req, res) => {
-  try {
+router.post(
+  "/",
+  asyncMiddleware(async (req, res) => {
     const movie = await Movie.findOne({ _id: req.body.movieId });
     if (!movie) {
       return res.status(400).send("Movie with the given ID was not found.");
@@ -51,9 +51,7 @@ router.post("/", async (req, res) => {
     await movie.save();
 
     res.status(200).json(result);
-  } catch (err) {
-    res.status(500).send("Something went wrong on the server.");
-  }
-});
+  })
+);
 
 module.exports = router;

@@ -3,9 +3,11 @@ const { Router } = require("express");
 const router = Router();
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
+const asyncMiddleware = require("../middleware/async");
 
-router.post("/", async (req, res) => {
-  try {
+router.post(
+  "/",
+  asyncMiddleware(async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password, salt);
 
@@ -16,9 +18,7 @@ router.post("/", async (req, res) => {
 
     const token = user.generateAuthToken();
     res.status(200).header("x-auth-token", token).send(user);
-  } catch (err) {
-    res.status(500).send("Something went wrong on the server.");
-  }
-});
+  })
+);
 
 module.exports = router;
