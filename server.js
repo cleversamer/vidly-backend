@@ -7,7 +7,16 @@ const logger = require("./services/logger");
 process.on("uncaughtException", (err) => {
   logger.log({
     level: "error",
-    message: `Something went wrong on the server: ${err.message}`,
+    name: "uncaughtException",
+    message: `${err.name}: ${err.message}`,
+  });
+});
+
+process.on("unhandledRejection", (err) => {
+  logger.log({
+    level: "error",
+    name: "unhandledRejection",
+    message: `${err.name}: ${err.message}`,
   });
 });
 
