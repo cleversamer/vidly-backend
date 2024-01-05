@@ -2,11 +2,11 @@ repo_name: cleversamerr/vidly-backend
 report_id: b27b02e4b51933ad001849e421d2ff59
 version: 0.1
 repo_type: Public
-timestamp: '2023-12-24T12:43:24+00:00'
+timestamp: '2024-01-05T08:16:17+00:00'
 requested_by: cleversamerr
 provider: github
 branch: main
-detected_tools_count: 13
+detected_tools_count: 14
 tools:
 - name: JavaScript
   description: Lightweight, interpreted, object-oriented language with first-class
@@ -17,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/cleversamerr/vidly-backend
   detection_source: Repo Metadata
 - name: ExpressJS
   description: Sinatra inspired web development framework for node.js -- insanely
@@ -69,6 +70,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Server Configuration and Automation
   image_url: https://img.stackshare.io/service/8067/default_90dcb1286af7685c68df319c764b80704df1155b.png
+  detection_source_url: https://github.com/cleversamerr/vidly-backend/blob/main/package.json
   detection_source: package.json
   last_updated_by: Samer A
   last_updated_on: 2022-07-01 08:54:55.000000000 Z
@@ -80,6 +82,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/cleversamerr/vidly-backend
   detection_source: Repo Metadata
 - name: nodemon
   description: A simple monitor script for use during development of a node.js app
@@ -103,6 +106,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/cleversamerr/vidly-backend/blob/main/package.json
   detection_source: package.json
   last_updated_by: Samer A
   last_updated_on: 2022-07-01 08:41:04.000000000 Z
@@ -125,6 +129,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/6668/9682013.png
+  detection_source_url: https://github.com/cleversamerr/vidly-backend/blob/main/package.json
   detection_source: package.json
   last_updated_by: Samer A
   last_updated_on: 2022-07-02 07:15:09.000000000 Z
@@ -197,3 +202,17 @@ tools:
     detected_date: Dec 22
     severity: moderate
     first_patched: 9.0.0
+- name: winston
+  description: A logger for just about everything
+  package_url: https://www.npmjs.com/winston
+  version: 3.8.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16003/default_261820f5687b4c88a3e8f95c71b5e8dccd34c1d7.png
+  detection_source_url: https://github.com/cleversamerr/vidly-backend/blob/main/package-lock.json
+  detection_source: package.json
+  last_updated_by: Samer A
+  last_updated_on: 2022-07-02 07:15:09.000000000 Z
